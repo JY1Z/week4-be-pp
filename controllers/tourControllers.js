@@ -11,7 +11,7 @@ const createTour = (req, res) => {
   const newTour = Tour.addOne({ ...req.body }); // Spread the req.body object
 
   if (newTour) {
-    res.json(newTour);
+    res.status(201).json(newTour); // 201 Created
   } else {
     // Handle error (e.g., failed to create car)
     res.status(500).json({ message: "Failed to create tour" });
@@ -48,8 +48,8 @@ const deleteTour = (req, res) => {
   const isDeleted = Tour.deleteOneById(tourId);
 
   if (isDeleted) {
-    res.json({ message: "Tour deleted successfully" });
-   } else {
+    res.status(204).send(); // 204 No Content
+    } else {
     // Handle deletion failure 
     res.status(404).json({ message: "Tour not found" });
   }
