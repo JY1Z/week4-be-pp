@@ -1,4 +1,6 @@
 const express = require('express');
+const auth = require('../middleware/auth');
+
 const router = express.Router();
 const {
     getAllUser,
@@ -10,6 +12,8 @@ const {
 
 // GET /users
 router.get('/', getAllUser);
+
+router.use(auth);
 
 // POST /users
 router.post('/', createUser);
